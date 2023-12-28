@@ -46,6 +46,16 @@ public class Przelew implements PrzelewInterface{
     }
 
     /**
+     * Zwraca kwotę przelewu.
+     *
+     * @return Kwota przelewu.
+     */
+
+    protected double getKwotaPrzelewu() {
+        return kwotaPrzelewu;
+    }
+
+    /**
      * Zwraca reprezentację tekstową obiektu przelewu.
      *
      * @return Tekstowa reprezentacja przelewu.
