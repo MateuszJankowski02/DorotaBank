@@ -1,12 +1,13 @@
-// zdefiniuj klase User, która będzie przechowywać dane użytkownika do późniejszego użytku
-// klasa User powinna zawierać gettery
-// klasa User powinna zawierać konstruktor
-// klasa User powinna zawierać metodę toString
-// klasa User powinna zawierać atrybuty: login, hasło, imię, nazwisko, email, wiek, płeć, adres, numer rachunku bankowego, czy jest zalogowany
+// zdefiniuj klase bank.User, która będzie przechowywać dane użytkownika do późniejszego użytku
+// klasa bank.User powinna zawierać gettery
+// klasa bank.User powinna zawierać konstruktor
+// klasa bank.User powinna zawierać metodę toString
+// klasa bank.User powinna zawierać atrybuty: login, hasło, imię, nazwisko, email, wiek, płeć, adres, numer rachunku bankowego, czy jest zalogowany
 // numer konta bankowego, typ rachunku bankowego
-// klasa User powinna zawierać settery: zmień hasło, zmień adres, zmień login, zmień dane osobowe
+// klasa bank.User powinna zawierać settery: zmień hasło, zmień adres, zmień login, zmień dane osobowe
 // setterów można użyć tylko wtedy jak użytkownik jest zalogowany
 // wszystko udokumentuj za pomocą JavaDoc
+package bank;
 
 public class User {
 
