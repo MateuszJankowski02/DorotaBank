@@ -37,7 +37,7 @@ public class User {
         this.typRachunku = typRachunku;
     }
 
-    private String getLogin() {
+    protected String getLogin() {
         return login;
     }
 
@@ -69,7 +69,7 @@ public class User {
         return adres;
     }
 
-    private String getNumerRachunku() {
+    protected String getNumerRachunku() {
         return numerRachunku;
     }
 
