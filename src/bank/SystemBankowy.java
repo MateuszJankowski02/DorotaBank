@@ -1,46 +1,52 @@
 package bank;
 
+import java.util.Random;
+
 public class SystemBankowy {
-public static void main(String[] args) {
-        Users users = new Users();
-        users.addUser(new User("login1", "haslo1", "imie1", "nazwisko1", "email1", 1, "plec1", "adres1"));
-        users.addUser(new User("login2", "haslo2", "imie2", "nazwisko2", "email2", 2, "plec2", "adres2"));
-        users.addUser(new User("login3", "haslo3", "imie3", "nazwisko3", "email3", 3, "plec3", "adres3"));
-        users.addUser(new User("login4", "haslo4", "imie4", "nazwisko4", "email4", 4, "plec4", "adres4"));
-        users.addUser(new User("login5", "haslo5", "imie5", "nazwisko5", "email5", 5, "plec5", "adres5"));
-        users.addUser(new User("login6", "haslo6", "imie6", "nazwisko6", "email6", 6, "plec6", "adres6"));
-        users.addUser(new User("login7", "haslo7", "imie7", "nazwisko7", "email7", 7, "plec7", "adres7"));
-        users.addUser(new User("login8", "haslo8", "imie8", "nazwisko8", "email8", 8, "plec8", "adres8"));
-        users.addUser(new User("login9", "haslo9", "imie9", "nazwisko9", "email9", 9, "plec9", "adres9"));
-        Logowanie logowanie = new Logowanie(users);
-        User user = logowanie.zaloguj("login1", "haslo1");
-        user.dodajRachunek(100, "typRachunku1");
-        Rachunek nowyRachunek = user.getRachunek(0);
-        Przelew przelew = new Przelew(nowyRachunek, "numerRachunkuOdbiorcy1", "tytulPrzelewu1", "rodzajPrzelewu1", 10);
-        user.WykonajPrzelew(przelew);
-        logowanie.wyloguj();
-        User user2 = logowanie.zaloguj("login2", "haslo2");
-        user2.dodajRachunek(50, "typRachunku2");
-        Rachunek nowyRachunek2 = user2.getRachunek(0);
-        Przelew przelew2 = new Przelew(nowyRachunek2, "numerRachunkuOdbiorcy2", "tytulPrzelewu2", "rodzajPrzelewu2", 50);
-        user2.WykonajPrzelew(przelew2);
-        logowanie.wyloguj();
-        User user3 = logowanie.zaloguj("login3", "haslo3");
-        user3.dodajRachunek(800, "typRachunku3");
-        Rachunek nowyRachunek3 = user3.getRachunek(0);
-        Przelew przelew3 = new Przelew(nowyRachunek3, "numerRachunkuOdbiorcy3", "tytulPrzelewu3", "rodzajPrzelewu3", 25);
-        user3.WykonajPrzelew(przelew3);
-        logowanie.wyloguj();
-        User user4 = logowanie.zaloguj("login4", "haslo4");
-        user4.dodajRachunek(20, "typRachunku4");
-        Rachunek nowyRachunek4 = user4.getRachunek(0);
-        System.out.println(nowyRachunek4.getSaldo());
-        nowyRachunek4.getHistoriaPrzelewow();
-        Przelew przelew4 = new Przelew(nowyRachunek4, "numerRachunkuOdbiorcy4", "tytulPrzelewu4", "rodzajPrzelewu4", 60);
-        System.out.println(przelew4.obliczSaldopoPrzelewie());
-        user4.WykonajPrzelew(przelew);
-        logowanie.wyloguj();
 
-    }
+        public static void main(String[] args) {
+                Users users = new Users();
+                users.addUser(new User("johnDoe123", "pass123", "John", "Doe", "john.doe@example.com", 30, "Male", "123 Main St"));
+                users.addUser(new User("janeSmith456", "pass456", "Jane", "Smith", "jane.smith@example.com", 25, "Female", "456 Oak St"));
+                users.addUser(new User("aliceJohnson789", "pass789", "Alice", "Johnson", "alice.johnson@example.com", 35, "Female", "789 Elm St"));
+                users.addUser(new User("bobWilliams987", "pass987", "Bob", "Williams", "bob.williams@example.com", 40, "Male", "987 Pine St"));
+                users.addUser(new User("charlieBrown654", "pass654", "Charlie", "Brown", "charlie.brown@example.com", 28, "Male", "654 Cedar St"));
+                users.addUser(new User("evaWhite321", "pass321", "Eva", "White", "eva.white@example.com", 22, "Female", "321 Birch St"));
+                users.addUser(new User("frankTaylor234", "pass234", "Frank", "Taylor", "frank.taylor@example.com", 32, "Male", "234 Maple St"));
+                users.addUser(new User("graceClark876", "pass876", "Grace", "Clark", "grace.clark@example.com", 27, "Female", "876 Walnut St"));
+                users.addUser(new User("davidMiller543", "pass543", "David", "Miller", "david.miller@example.com", 38, "Male", "543 Spruce St"));
 
+                Logowanie logowanie = new Logowanie(users);
+
+                User user = logowanie.zaloguj("johnDoe123", "pass123");
+                user.dodajRachunek(1000, "Checking");
+                Rachunek nowyRachunek = user.getRachunek(0);
+                Przelew przelew = new Przelew(nowyRachunek, "987654321", "Rent Payment", "Regular", 150);
+                user.WykonajPrzelew(przelew);
+                logowanie.wyloguj();
+
+                User user2 = logowanie.zaloguj("janeSmith456", "pass456");
+                user2.dodajRachunek(500, "Savings");
+                Rachunek nowyRachunek2 = user2.getRachunek(0);
+                Przelew przelew2 = new Przelew(nowyRachunek2, "123456789", "Utility Bill", "Regular", 50);
+                user2.WykonajPrzelew(przelew2);
+                logowanie.wyloguj();
+
+                User user3 = logowanie.zaloguj("aliceJohnson789", "pass789");
+                user3.dodajRachunek(8000, "Investment");
+                Rachunek nowyRachunek3 = user3.getRachunek(0);
+                Przelew przelew3 = new Przelew(nowyRachunek3, "456789123", "Loan Repayment", "Regular", 200);
+                user3.WykonajPrzelew(przelew3);
+                logowanie.wyloguj();
+
+                User user4 = logowanie.zaloguj("bobWilliams987", "pass987");
+                user4.dodajRachunek(200, "Emergency Fund");
+                Rachunek nowyRachunek4 = user4.getRachunek(0);
+                System.out.println(nowyRachunek4.getSaldo());
+                nowyRachunek4.getHistoriaPrzelewow();
+                Przelew przelew4 = new Przelew(nowyRachunek4, "654321987", "Grocery Shopping", "Regular", 60);
+                System.out.println(przelew4.obliczSaldopoPrzelewie());
+                user4.WykonajPrzelew(przelew4);
+                logowanie.wyloguj();
+        }
 }
