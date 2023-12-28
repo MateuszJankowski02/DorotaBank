@@ -1,5 +1,8 @@
 package bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 interface RachunekInterface {
 
     String toString();
@@ -12,7 +15,7 @@ interface RachunekInterface {
 public class Rachunek implements RachunekInterface{
     private double saldo;
     private String typRachunku;
-    private Przelew[] historiaPrzelewow;
+    private List<Przelew> historiaPrzelewow = new ArrayList<>();
     int numberOfPrzelew = 0;
 
     /**
@@ -52,8 +55,8 @@ public class Rachunek implements RachunekInterface{
      */
 
     protected void getHistoriaPrzelewow() {
-        for (int i = 0; i < historiaPrzelewow.length; i++) {
-            System.out.println("Przelew numer " + i + ": " + historiaPrzelewow[i].toString());
+        for (int i = 0; i < numberOfPrzelew; i++) {
+            System.out.println(historiaPrzelewow.get(i));
         }
     }
 
@@ -64,7 +67,7 @@ public class Rachunek implements RachunekInterface{
      */
 
     protected void addPrzelew(Przelew przelew) {
-        this.historiaPrzelewow[numberOfPrzelew] = przelew;
+        historiaPrzelewow.add(przelew);
         numberOfPrzelew++;
     }
 
