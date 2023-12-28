@@ -190,13 +190,14 @@ public class User implements UserInterface{
             return;
         }
 
-        if (przelew.obliczSaldopoPrzelewie() < 0) {
+        if (przelew.obliczSaldopoPrzelewie() < 0.0) {
             System.out.println("Nie masz wystarczających środków na koncie");
             return;
         }
 
-        przelew.getRachunek().addPrzelew(przelew);
+        System.out.println("Saldo: " + przelew.obliczSaldopoPrzelewie());
         przelew.getRachunek().setSaldo(przelew.obliczSaldopoPrzelewie());
+        przelew.getRachunek().addPrzelew(przelew);
         System.out.println("Przelew wykonany");
         System.out.println("Saldo po przelewie: " + przelew.getRachunek().getSaldo());
     }
