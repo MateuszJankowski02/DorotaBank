@@ -1,5 +1,8 @@
 package bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 interface UsersInterface {
 
     void addUser(User user);
@@ -7,7 +10,7 @@ interface UsersInterface {
 }
 
 public class Users implements UsersInterface{
-private User[] users;
+private List<User> users = new ArrayList<>();
 int numberOfUsers = 0;
 
     /**
@@ -17,7 +20,7 @@ int numberOfUsers = 0;
 
     @Override
     public void addUser(User user) {
-        this.users[numberOfUsers] = user;
+        users.add(user);
         numberOfUsers++;
     }
 
@@ -26,7 +29,7 @@ int numberOfUsers = 0;
      * @return Lista użytkowników.
      */
 
-    protected User[] getUsers() {
+    protected List<User> getUsers() {
         return users;
     }
 
@@ -38,8 +41,8 @@ int numberOfUsers = 0;
 
     protected User findUserLogin(String login) {
         for (int i = 0; i < numberOfUsers; i++) {
-            if (users[i].getLogin().equals(login)) {
-                return users[i];
+                if (users.get(i).getLogin().equals(login)) {
+                return users.get(i);
             }
         }
         System.out.println("Nie znaleziono użytkownika o loginie: " + login);
