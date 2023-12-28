@@ -1,5 +1,7 @@
 package bank;
-public class Przelew {
+
+
+public class Przelew implements PrzelewInterface {
 
     private String kontoOdbiorcy;
     private String tytulPrzelewu;

@@ -3,7 +3,7 @@
 // klasa bank.Users powinna zawierać konstruktor
 package bank;
 
-public class Users {
+public class Users implements UsersInterface{
 private User[] users;
 int numberOfUsers = 0;
 
