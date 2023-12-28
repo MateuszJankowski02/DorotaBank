@@ -4,7 +4,7 @@
 package bank;
 
 public class Users {
-User[] users;
+private User[] users;
 int numberOfUsers = 0;
 
     public void addUser(User user) {
@@ -12,7 +12,7 @@ int numberOfUsers = 0;
         numberOfUsers++;
     }
 
-    private User[] getUsers() {
+    protected User[] getUsers() {
         return users;
     }
 
@@ -25,7 +25,7 @@ int numberOfUsers = 0;
         return null;
     }
 
-    private User findUserLogin(String login) {
+    protected User findUserLogin(String login) {
         for (int i = 0; i < numberOfUsers; i++) {
             if (users[i].getLogin().equals(login)) {
                 return users[i];
