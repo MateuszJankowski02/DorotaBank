@@ -17,16 +17,32 @@ public class Przelew {
         return kontoOdbiorcy;
     }
 
+    public void setKontoOdbiorcy(String kontoOdbiorcy) {
+        this.kontoOdbiorcy = kontoOdbiorcy;
+    }
+
     public String getTytulPrzelewu() {
         return tytulPrzelewu;
+    }
+
+    public void setTytulPrzelewu(String tytulPrzelewu) {
+        this.tytulPrzelewu = tytulPrzelewu;
     }
 
     public String getRodzajPrzelewu() {
         return rodzajPrzelewu;
     }
 
+    public void setRodzajPrzelewu(String rodzajPrzelewu) {
+        this.rodzajPrzelewu = rodzajPrzelewu;
+    }
+
     public String getSaldoPoPrzelewie() {
         return saldoPoPrzelewie;
+    }
+
+    public void setSaldoPoPrzelewie(String saldoPoPrzelewie) {
+        this.saldoPoPrzelewie= saldoPoPrzelewie;
     }
 
     @Override
