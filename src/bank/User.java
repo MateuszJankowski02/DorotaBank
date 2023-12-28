@@ -1,5 +1,8 @@
 package bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 interface UserInterface {
 
     void WykonajPrzelew(Przelew przelew);
@@ -32,7 +35,7 @@ public class User implements UserInterface{
     private String plec;
     private String adres;
     private boolean czyZalogowany = false;
-    private Rachunek[] rachunki;
+    private List<Rachunek> rachunki = new ArrayList<>();
     private int numberOfRachunek = 0;
 
     /**
@@ -211,7 +214,17 @@ public class User implements UserInterface{
             return;
         }
         Rachunek rachunek = new Rachunek(saldo, typRachunku);
-        this.rachunki[numberOfRachunek] = rachunek;
+        rachunki.add(rachunek);
+    }
+
+    /**
+     * Zwraca rachunek o podanym indeksie.
+     * @param index Indeks rachunku.
+     * @return Rachunek o podanym indeksie.
+     */
+
+    public Rachunek getRachunek(int index) {
+        return rachunki.get(index);
     }
 
     /**
