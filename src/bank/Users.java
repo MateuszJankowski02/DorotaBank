@@ -16,21 +16,13 @@ int numberOfUsers = 0;
         return users;
     }
 
-    private User findUserRachunek(String numerRachunku) {
-        for (int i = 0; i < numberOfUsers; i++) {
-            if (users[i].getNumerRachunku().equals(numerRachunku)) {
-                return users[i];
-            }
-        }
-        return null;
-    }
-
     protected User findUserLogin(String login) {
         for (int i = 0; i < numberOfUsers; i++) {
             if (users[i].getLogin().equals(login)) {
                 return users[i];
             }
         }
+        System.out.println("Nie znaleziono użytkownika o loginie: " + login);
         return null;
     }
 }

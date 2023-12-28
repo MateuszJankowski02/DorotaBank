@@ -22,7 +22,7 @@ public class User {
     private boolean czyZalogowany = false;
     private Rachunek[] rachunki;
 
-    private int numberofRachunek = 0;
+    private int numberOfRachunek = 0;
 
     public User(String login, String haslo, String imie, String nazwisko, String email, int wiek, String plec, String adres) {
         this.login = login;
@@ -66,7 +66,6 @@ public class User {
     private String getAdres() {
         return adres;
     }
-
 
 
     private boolean getCzyZalogowany() {
@@ -127,17 +126,24 @@ public class User {
     }
 
 
-    public void WykonajPrzelew(Przelew przelew) {
-        this.historiaPrzelewow[numberOfPrzelew] = przelew;
-        numberOfPrzelew++;
-    }
-
-    private void setHistoriaPrzelewow(int liczbaPrzelewow) {
+    public void WykonajPrzelew(Przelew przelew, Rachunek rachunek) {
         if (!getCzyZalogowany()) {
             System.out.println("Nie jesteś zalogowany");
             return;
         }
-        this.historiaPrzelewow = new Przelew[liczbaPrzelewow];
+        if (rachunek == null) {
+            System.out.println("Nie znaleziono rachunku");
+            return;
+        }
+
+        if (przelew.obliczSaldopoPrzelewie() < 0) {
+            System.out.println("Nie masz wystarczających środków na koncie");
+            return;
+        }
+
+        rachunek.addPrzelew(przelew);
+        System.out.println("Przelew wykonany");
+        System.out.println("Saldo po przelewie: " + rachunek.getSaldo());
     }
 
     private void dodajRachunek(double saldo, String typRachunku) {
@@ -151,30 +157,6 @@ public class User {
 
     protected void setCzyZalogowany(boolean czyZalogowany) {
         this.czyZalogowany = czyZalogowany;
-    }
-
-    private void wykonajPrzelew(Rachunki rachunek, Przelew przelew) {
-        if (!getCzyZalogowany()) {
-            System.out.println("Nie jesteś zalogowany");
-            return;
-        }
-
-        if (!rachunki.contains(rachunek)) {
-            System.out.println("Nie masz dostępu do tego rachunku");
-            return;
-        }
-
-        if (przelew.getRodzajPrzelewu().equals("wychodzacy")) {
-            if (rachunek.getSaldo() < Integer.parseInt(przelew.getSaldoPoPrzelewie())) {
-                System.out.println("Nie masz wystarczających środków na koncie");
-                return;
-            }
-            rachunek.setSaldo(rachunek.getSaldo() - Integer.parseInt(przelew.getSaldoPoPrzelewie()));
-        }
-
-        System.out.println("Wykonano przelew na rachunek: " + przelew.getKontoOdbiorcy() + " na kwotę: " + przelew.getSaldoPoPrzelewie() + "zł");
-        System.out.println("Saldo po przelewie: " + rachunek.getSaldo());
-        System.out.println("Historia przelewu: " + przelew.toString());
     }
 
     @Override

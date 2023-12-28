@@ -24,10 +24,15 @@ public class Rachunek{
         return typRachunku;
     }
 
-    private void getHistoriaPrzelewow() {
+    protected void getHistoriaPrzelewow() {
         for (int i = 0; i < historiaPrzelewow.length; i++) {
             System.out.println("Przelew numer " + i + ": " + historiaPrzelewow[i].toString());
         }
+    }
+
+    protected void addPrzelew(Przelew przelew) {
+        this.historiaPrzelewow[numberOfPrzelew] = przelew;
+        numberOfPrzelew++;
     }
 
 
@@ -35,20 +40,10 @@ public class Rachunek{
         this.saldo = saldo;
     }
 
-
-    protected void setHistoriaTransakcji(String historiaTransakcji) {
-        this.historiaTransakcji = historiaTransakcji;
-    }
-
-
-
     @Override
     public String toString() {
-        return "Rachunek :" +
-                "saldo=" + saldo +
-                ", rachunek=" + rachunek +
-                ", numerKonta=" + numerKonta  +
-                ", historiaTransakcji=" + historiaTransakcji +
-                ", rodzajKonta=" + rodzajKonta ;
+        return "Rachunek:" +
+                "saldo = " + saldo +
+                ", typRachunku = " + typRachunku;
     }
 }
