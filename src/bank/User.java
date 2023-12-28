@@ -9,9 +9,6 @@
 // wszystko udokumentuj za pomocą JavaDoc
 package bank;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class User {
 
     private String login;
@@ -22,11 +19,12 @@ public class User {
     private int wiek;
     private String plec;
     private String adres;
-    private boolean czyZalogowany;
-    private List<Rachunki> rachunki;
-    private Przelew[] historiaPrzelewow;
+    private boolean czyZalogowany = false;
+    private Rachunek[] rachunki;
 
-    public User(String login, String haslo, String imie, String nazwisko, String email, int wiek, String plec, String adres, String numerRachunku, boolean czyZalogowany, String typRachunku) {
+    private int numberofRachunek = 0;
+
+    public User(String login, String haslo, String imie, String nazwisko, String email, int wiek, String plec, String adres) {
         this.login = login;
         this.haslo = haslo;
         this.imie = imie;
@@ -35,15 +33,13 @@ public class User {
         this.wiek = wiek;
         this.plec = plec;
         this.adres = adres;
-        this.czyZalogowany = czyZalogowany;
-        this.rachunki = new ArrayList<>();
     }
 
     protected String getLogin() {
         return login;
     }
 
-    private String getHaslo() {
+    protected String getHaslo() {
         return haslo;
     }
 
@@ -71,15 +67,7 @@ public class User {
         return adres;
     }
 
-    private void getHistoriaPrzelewow() {
-        for (int i = 0; i < historiaPrzelewow.length; i++) {
-            System.out.println("Przelew numer " + i + ": " + historiaPrzelewow[i].toString());
-        }
-    }
 
-    protected String getNumerRachunku() {
-        return rachunki.get(0).getNumerKonta();
-    }
 
     private boolean getCzyZalogowany() {
         return czyZalogowany;
@@ -138,9 +126,8 @@ public class User {
         this.nazwisko = nazwisko;
     }
 
-    int numberOfPrzelew = 0;
 
-    public void addPrzelew(Przelew przelew) {
+    public void WykonajPrzelew(Przelew przelew) {
         this.historiaPrzelewow[numberOfPrzelew] = przelew;
         numberOfPrzelew++;
     }
@@ -153,12 +140,17 @@ public class User {
         this.historiaPrzelewow = new Przelew[liczbaPrzelewow];
     }
 
-    private void setRachunek(double saldo, String rachunek, String numerKonta, String historiaTransakcji, String rodzajKonta) {
+    private void dodajRachunek(double saldo, String typRachunku) {
         if (!getCzyZalogowany()) {
             System.out.println("Nie jesteś zalogowany");
             return;
         }
-        this.rachunki.add(new Rachunki(saldo, rachunek, numerKonta, historiaTransakcji, rodzajKonta));
+        Rachunek rachunek = new Rachunek(saldo, typRachunku);
+        this.rachunki[numberOfRachunek] = rachunek;
+    }
+
+    protected void setCzyZalogowany(boolean czyZalogowany) {
+        this.czyZalogowany = czyZalogowany;
     }
 
     private void wykonajPrzelew(Rachunki rachunek, Przelew przelew) {
@@ -196,5 +188,6 @@ public class User {
                 "adres: " + adres + "\n";
 
     }
+
 
 }
