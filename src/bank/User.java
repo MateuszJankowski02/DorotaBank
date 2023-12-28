@@ -22,6 +22,7 @@ public class User {
     private String numerRachunku;
     private boolean czyZalogowany;
     private String typRachunku;
+    private Przelew[] historiaPrzelewow;
 
     public User(String login, String haslo, String imie, String nazwisko, String email, int wiek, String plec, String adres, String numerRachunku, boolean czyZalogowany, String typRachunku) {
         this.login = login;
@@ -67,6 +68,12 @@ public class User {
 
     private String getAdres() {
         return adres;
+    }
+
+    private void getHistoriaPrzelewow() {
+        for (int i = 0; i < historiaPrzelewow.length; i++) {
+            System.out.println("Przelew numer " + i + ": " + historiaPrzelewow[i].toString());
+        }
     }
 
     protected String getNumerRachunku() {
