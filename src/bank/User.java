@@ -9,6 +9,9 @@
 // wszystko udokumentuj za pomocą JavaDoc
 package bank;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 
     private String login;
@@ -19,9 +22,8 @@ public class User {
     private int wiek;
     private String plec;
     private String adres;
-    private String numerRachunku;
     private boolean czyZalogowany;
-    private String typRachunku;
+    private List<Rachunki> rachunki;
     private Przelew[] historiaPrzelewow;
 
     public User(String login, String haslo, String imie, String nazwisko, String email, int wiek, String plec, String adres, String numerRachunku, boolean czyZalogowany, String typRachunku) {
@@ -33,9 +35,8 @@ public class User {
         this.wiek = wiek;
         this.plec = plec;
         this.adres = adres;
-        this.numerRachunku = numerRachunku;
         this.czyZalogowany = czyZalogowany;
-        this.typRachunku = typRachunku;
+        this.rachunki = new ArrayList<>();
     }
 
     protected String getLogin() {
@@ -77,15 +78,11 @@ public class User {
     }
 
     protected String getNumerRachunku() {
-        return numerRachunku;
+        return rachunki.get(0).getNumerKonta();
     }
 
     private boolean getCzyZalogowany() {
         return czyZalogowany;
-    }
-
-    private String getTypRachunku() {
-        return typRachunku;
     }
 
     private void setDaneOsobowe(String imie, String nazwisko, String email, String wiek, String plec) {
@@ -93,11 +90,11 @@ public class User {
             System.out.println("Nie jesteś zalogowany");
             return;
         }
-        if(imie != null) this.imie = imie;
-        if(nazwisko != null) this.nazwisko = nazwisko;
-        if(email != null) this.email = email;
-        if(wiek != null) this.wiek = Integer.parseInt(wiek);
-        if(plec != null) this.plec = plec;
+        if (imie != null) this.imie = imie;
+        if (nazwisko != null) this.nazwisko = nazwisko;
+        if (email != null) this.email = email;
+        if (wiek != null) this.wiek = Integer.parseInt(wiek);
+        if (plec != null) this.plec = plec;
     }
 
     private void setLogin(String login) {
@@ -141,6 +138,53 @@ public class User {
         this.nazwisko = nazwisko;
     }
 
+    int numberOfPrzelew = 0;
+
+    public void addPrzelew(Przelew przelew) {
+        this.historiaPrzelewow[numberOfPrzelew] = przelew;
+        numberOfPrzelew++;
+    }
+
+    private void setHistoriaPrzelewow(int liczbaPrzelewow) {
+        if (!getCzyZalogowany()) {
+            System.out.println("Nie jesteś zalogowany");
+            return;
+        }
+        this.historiaPrzelewow = new Przelew[liczbaPrzelewow];
+    }
+
+    private void setRachunek(double saldo, String rachunek, String numerKonta, String historiaTransakcji, String rodzajKonta) {
+        if (!getCzyZalogowany()) {
+            System.out.println("Nie jesteś zalogowany");
+            return;
+        }
+        this.rachunki.add(new Rachunki(saldo, rachunek, numerKonta, historiaTransakcji, rodzajKonta));
+    }
+
+    private void wykonajPrzelew(Rachunki rachunek, Przelew przelew) {
+        if (!getCzyZalogowany()) {
+            System.out.println("Nie jesteś zalogowany");
+            return;
+        }
+
+        if (!rachunki.contains(rachunek)) {
+            System.out.println("Nie masz dostępu do tego rachunku");
+            return;
+        }
+
+        if (przelew.getRodzajPrzelewu().equals("wychodzacy")) {
+            if (rachunek.getSaldo() < Integer.parseInt(przelew.getSaldoPoPrzelewie())) {
+                System.out.println("Nie masz wystarczających środków na koncie");
+                return;
+            }
+            rachunek.setSaldo(rachunek.getSaldo() - Integer.parseInt(przelew.getSaldoPoPrzelewie()));
+        }
+
+        System.out.println("Wykonano przelew na rachunek: " + przelew.getKontoOdbiorcy() + " na kwotę: " + przelew.getSaldoPoPrzelewie() + "zł");
+        System.out.println("Saldo po przelewie: " + rachunek.getSaldo());
+        System.out.println("Historia przelewu: " + przelew.toString());
+    }
+
     @Override
     public String toString() {
         return "Dane użytkownika: \n" +
@@ -149,8 +193,8 @@ public class User {
                 "email: " + email + "\n" +
                 "wiek: " + wiek + "\n" +
                 "plec: " + plec + "\n" +
-                "adres: " + adres + "\n" +
-                "numerRachunku: " + numerRachunku + "\n" +
-                "typRachunku: " + typRachunku + "\n";
+                "adres: " + adres + "\n";
+
     }
+
 }

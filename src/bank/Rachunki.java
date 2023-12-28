@@ -1,18 +1,18 @@
 package bank;
 
-// zdefiniuj klasę KontoWBanku, która zawiera saldo, rachunek,numerKonta,historiaTransakcji, rodzajKonta
+// zdefiniuj klasę Rachunki, która zawiera saldo, rachunek,numerKonta,historiaTransakcji, rodzajKonta
 // klasa Users powinna zawierać gettery i settery
 // klasa Users powinna zawierać konstruktor
 
 
-public class KontoWBanku {
+public class Rachunki{
     private double saldo;
     private String rachunek;
     private String numerKonta;
     private String historiaTransakcji;
     private String rodzajKonta;
 
-    public KontoWBanku(double saldo, String rachunek, String numerKonta, String historiaTransakcji, String rodzajKonta) {
+    public Rachunki (double saldo, String rachunek, String numerKonta, String historiaTransakcji, String rodzajKonta) {
         this.saldo = saldo;
         this.rachunek = rachunek;
         this.numerKonta = numerKonta;
@@ -65,11 +65,11 @@ public class KontoWBanku {
 
     @Override
     public String toString() {
-        return "KontoWBanku{" +
+        return "Rachunek :" +
                 "saldo=" + saldo +
-                ", rachunek='" + rachunek + '\'' +
-                ", numerKonta='" + numerKonta + '\'' +
-                ", historiaTransakcji='" + historiaTransakcji + '\'' +
-                ", rodzajKonta='" + rodzajKonta + '\'';
+                ", rachunek=" + rachunek +
+                ", numerKonta=" + numerKonta  +
+                ", historiaTransakcji=" + historiaTransakcji +
+                ", rodzajKonta=" + rodzajKonta ;
     }
 }

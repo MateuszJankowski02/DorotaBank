@@ -13,44 +13,24 @@ public class Przelew {
         this.saldoPoPrzelewie = saldoPoPrzelewie;
     }
 
-    public String getKontoOdbiorcy() {
-        return kontoOdbiorcy;
+    @Override
+    public String toString() {
+        return "Przelew: " +
+                "konto Odbiorcy=" + kontoOdbiorcy +
+                ", tytul Przelewu=" + tytulPrzelewu +
+                ", rodzaj Przelewu=" + rodzajPrzelewu +
+                ", saldo Po Przelewie=" + saldoPoPrzelewie ;
     }
 
-    public void setKontoOdbiorcy(String kontoOdbiorcy) {
-        this.kontoOdbiorcy = kontoOdbiorcy;
-    }
-
-    public String getTytulPrzelewu() {
-        return tytulPrzelewu;
-    }
-
-    public void setTytulPrzelewu(String tytulPrzelewu) {
-        this.tytulPrzelewu = tytulPrzelewu;
-    }
-
-    public String getRodzajPrzelewu() {
+    public Object getRodzajPrzelewu() {
         return rodzajPrzelewu;
-    }
-
-    public void setRodzajPrzelewu(String rodzajPrzelewu) {
-        this.rodzajPrzelewu = rodzajPrzelewu;
     }
 
     public String getSaldoPoPrzelewie() {
         return saldoPoPrzelewie;
     }
 
-    public void setSaldoPoPrzelewie(String saldoPoPrzelewie) {
-        this.saldoPoPrzelewie= saldoPoPrzelewie;
-    }
-
-    @Override
-    public String toString() {
-        return "bank.Przelew: " +
-                "konto Odbiorcy='" + kontoOdbiorcy + '\'' +
-                ", tytul Przelewu='" + tytulPrzelewu + '\'' +
-                ", rodzaj Przelewu='" + rodzajPrzelewu + '\'' +
-                ", saldo Po Przelewie='" + saldoPoPrzelewie + '\'';
+    public String getKontoOdbiorcy() {
+        return kontoOdbiorcy;
     }
 }
